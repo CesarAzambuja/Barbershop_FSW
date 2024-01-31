@@ -28,7 +28,7 @@ model Barbershop {
 model Service {
   id           String  @id @default(uuid())
   name         String
-  Price        Decimal @db.Decimal(10, 2)
+  price        Decimal @db.Decimal(10, 2)
   barbershopId String
   description  String
 
