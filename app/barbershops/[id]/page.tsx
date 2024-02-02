@@ -2,7 +2,7 @@
 import { db } from "@/app/_lib/prisma";
 import BarbershopInfo from "./_components/barbershop-inf";
 import ServiceItem from "./_components/service-item";
-import { Key } from "react";
+
 
 
 
