@@ -1,11 +1,11 @@
 const Footer = () => {
-    return ( 
+    return (
         <div className="w-full bg-secondary py-6 px-5">
-            <p className="text-gray-400 text-xs font-bold opacity-75">
-            © 2023 Copyright FSW Barber
+            <p className="text-gray-400 text-xs opacity-75">
+                © 2024 Copyright <span className="font-bold">FSW Barber</span>
             </p>
         </div>
-     );
+    );
 }
- 
+
 export default Footer;

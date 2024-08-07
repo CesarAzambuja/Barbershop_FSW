@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Button } from "@/app/_components/ui/button";
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react";
@@ -9,40 +9,52 @@ import { Sheet, SheetContent, SheetTrigger } from "@/app/_components/ui/sheet";
 import SideMenu from "@/app/_components/side-menu";
 
 interface BarbershopInfoProps {
-    barbershop: Barbershop
-    
-};
+    barbershop: Barbershop;
+}
 
-
-const BarbershopInfo = ({barbershop}: BarbershopInfoProps) => {
+const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
     const router = useRouter();
 
     const handleBackClick = () => {
-        router.replace("/")
-    }
+        router.replace("/");
+    };
 
-
-    return ( 
+    return (
         <div>
             <div className="h-[250px] w-full relative">
-            <Button onClick={handleBackClick} size="icon" variant="outline" className="z-50 absolute top-4 left-4">
-                <ChevronLeftIcon />
-            </Button>
+                <Button
+                    onClick={handleBackClick}
+                    size="icon"
+                    variant="outline"
+                    className="z-50 absolute top-4 left-4"
+                >
+                    <ChevronLeftIcon />
+                </Button>
 
-            <Sheet>
+                <Sheet>
                     <SheetTrigger asChild>
-                    <Button size="icon" variant="outline" className="z-50 absolute top-4 right-4">
-                        <MenuIcon />
-                    </Button>
+                        <Button
+                            size="icon"
+                            variant="outline"
+                            className="z-50 absolute top-4 right-4"
+                        >
+                            <MenuIcon />
+                        </Button>
                     </SheetTrigger>
 
                     <SheetContent className="p-0">
-                        <SideMenu/>
+                        <SideMenu />
                     </SheetContent>
                 </Sheet>
-                <Image  className="opacity-75"alt={barbershop.name} src={barbershop.imageUrl} fill style={{
-                    objectFit: "cover",
-                }}/> 
+                <Image
+                    className="opacity-75"
+                    alt={barbershop.name}
+                    src={barbershop.imageUrl}
+                    fill
+                    style={{
+                        objectFit: "cover",
+                    }}
+                />
             </div>
 
             <div className="px-5 pt-3 pb-6 border-b border-solid border-secondary">
@@ -56,8 +68,8 @@ const BarbershopInfo = ({barbershop}: BarbershopInfoProps) => {
                     <p className="text-sm">5,0 (Mais de 200 Avaliacões)</p>
                 </div>
             </div>
-       </div>
-     );
-}
- 
+        </div>
+    );
+};
+
 export default BarbershopInfo;

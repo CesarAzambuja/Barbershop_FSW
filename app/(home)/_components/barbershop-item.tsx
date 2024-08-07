@@ -8,44 +8,44 @@ import { StarIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-interface BarbershopItemProps{
+interface BarbershopItemProps {
     barbershop: Barbershop;
 }
 
-const BarbershopItem = ({barbershop}: BarbershopItemProps) => {
+const BarbershopItem = ({ barbershop }: BarbershopItemProps) => {
     const router = useRouter();
 
     const handBookingClick = () => {
         router.push(`/barbershops/${barbershop.id}`)
     }
-     
 
-    return ( 
+
+    return (
         <Card className="min-w-[167px] max-w-[167px] rounded-2xl">
             <CardContent className=" px-1 p-0">
                 <div className=" relative w-full h-[159px]">
-                <div className="absolute top-2 left-2 z-50">
-                <Badge variant="secondary" className="flex items-center opacity-95">
-                    <StarIcon size={12} className="mr-1 fill-primary text-primary"/>
-                    <span>5,0</span>
-                </Badge>
+                    <div className="absolute top-2 left-2 z-50">
+                        <Badge variant="secondary" className="flex items-center opacity-95">
+                            <StarIcon size={12} className="mr-1 fill-primary text-primary" />
+                            <span>5,0</span>
+                        </Badge>
+                    </div>
+                    <Image alt={barbershop.name} src={barbershop.imageUrl}
+                        style={{
+                            objectFit: "cover",
+                        }}
+                        fill
+                        className=" rounded-t-2xl"
+                    />
                 </div>
-                <Image alt={barbershop.name} src={barbershop.imageUrl}
-                style={{
-                    objectFit: "cover",
-                }}
-                fill
-                className=" rounded-t-2xl"
-                />
-                </div> 
                 <div className="px-3 pb-3">
-                    <h2 className="font-bold mt-2 overflow-hidden text-ellipsis text-nowrap">{barbershop.name}</h2>
-                    <p className="text-sm text-gray-400 overflow-hidden text-ellipsis text-nowrap">{barbershop.address}</p>
-                    <Button className="w-full mt-3" variant= 'secondary' onClick={handBookingClick}>Reservar</Button>
+                    <h2 className="font-bold mt-2 truncate">{barbershop.name}</h2>
+                    <p className="text-sm text-gray-400 truncate">{barbershop.address}</p>
+                    <Button className="w-full mt-3" variant='secondary' onClick={handBookingClick}>Reservar</Button>
                 </div>
             </CardContent>
         </Card>
-     );
+    );
 }
- 
+
 export default BarbershopItem;
