@@ -1,14 +1,18 @@
 
-import Header from "../_components/header";
 import { format } from "date-fns"
 import { ptBR } from "date-fns/locale";
+import { db } from "../_lib/prisma";
+import { Key } from "react";
+import Image from "next/image";
+
+import { Button } from "../_components/ui/button";
+
+import Header from "../_components/header";
 import Search from "./_components/search";
 import BookingItem from "../_components/booking-item";
-import { db } from "../_lib/prisma";
 import BarbershopItem from "./_components/barbershop-item";
-import { Key } from "react";
-import { Button } from "../_components/ui/button";
-import Image from "next/image";
+import { quickSearchOptions } from "./_constants/optionsSearch";
+
 
 
 
@@ -41,25 +45,20 @@ export default async function Home() {
         <Search />
       </div>
 
-      <div className="flex gap-3 px-5 pt-5">
-        <Button className="gap-2" variant="secondary">
-          <Image
-            src="/cabelo.svg" width={16} height={16} alt="Cabelo" />
-          Cabelo
-        </Button>
-        <Button className="gap-2" variant="secondary">
-          <Image
-            src="/barba.svg" width={16} height={16} alt="Barba" />
-          Barba
-        </Button>
-        <Button className="gap-2" variant="secondary">
-          <Image
-            src="/acabamento.svg" width={16} height={16} alt="Acabamento" />
-          Acabamento
-        </Button>
+      <div className="flex gap-3 px-5 pt-5 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+        {quickSearchOptions.map((option) => {
+          return (
+            <Button className="gap-2" variant="secondary" key={option.title}>
+              <Image src={option.imageUrl} width={16} height={16} alt={option.title} />
+              {option.title}
+            </Button>
+          );
+        })}
+
       </div>
 
-      <h2 className="text-xs uppercase text-gray-400 px-5 pt-3 mt-4 font-bold">Agendamentos</h2>
+
+      <h2 className="text-xs uppercase text-gray-400 px-5 pt-3 mt-4 font-bold">Sobrancelha</h2>
       <div className="px-5 mt-4">
         <BookingItem />
       </div>
