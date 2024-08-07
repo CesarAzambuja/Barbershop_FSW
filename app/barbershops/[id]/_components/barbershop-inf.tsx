@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/app/_components/ui/button";
-import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react";
+import { ChevronLeftIcon, MapPinIcon, MenuIcon, PhoneIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import { Barbershop } from "@prisma/client";
 import { useRouter } from "next/navigation";
@@ -67,6 +67,11 @@ const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
                     <StarIcon className="text-primary" size={18} />
                     <p className="text-sm">5,0 (Mais de 200 Avaliacões)</p>
                 </div>
+                <div className="flex items-center gap-2 mt-2">
+                    <PhoneIcon className="text-primary" size={18} />
+                    <p className="text-sm">{barbershop.phones[0]}</p>
+                </div>
+
             </div>
         </div>
     );
