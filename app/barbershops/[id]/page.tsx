@@ -1,9 +1,13 @@
 
+
 import { db } from "@/app/_lib/prisma";
 import BarbershopInfo from "./_components/barbershop-inf";
 import ServiceItem from "./_components/service-item";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { SmartphoneIcon } from "lucide-react";
+import { Button } from "@/app/_components/ui/button";
+import BarberShopPhone from "./_components/barbershop-phone";
 
 
 
@@ -11,7 +15,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 interface BarbershopDetailsPageProps {
     params: {
         id?: string;
-        
+
     };
 };
 
@@ -22,7 +26,7 @@ const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => 
     if (!params.id) {
         // TODO: Redirecionar para a homepage   
         return null;
-      }
+    }
     const barbershop = await db.barbershop.findUnique({
         where: {
             id: params.id,
@@ -33,22 +37,29 @@ const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => 
         }
     })
 
-    if (!barbershop){
+    if (!barbershop) {
         // TODO: Redirecionar para a homepage   
         return null
     }
 
-    return (
-    <div>
-        <BarbershopInfo barbershop={barbershop} />
 
-       <div className="px-5 flex flex-col gap-4 py-6">
-       {barbershop.services.map((service) => (
-            <ServiceItem key={service.id} barbershop={barbershop} service={service} isAuthenticated={session?.user}/>
-        ))}
-       </div>
-    </div>
+    return (
+        <div>
+            <BarbershopInfo barbershop={barbershop} />
+
+            <div className="px-5 flex flex-col gap-4 py-6 border-b border-solid p-5">
+                {barbershop.services.map((service) => (
+                    <ServiceItem key={service.id} barbershop={barbershop} service={service} isAuthenticated={session?.user} />
+                ))}
+            </div>
+
+            <div className="p-5 spacy-y-3">
+                {barbershop.phones.map(phone => (
+                    <BarberShopPhone key={phone} phone={phone} />
+                ))}
+            </div>
+        </div>
     );
 };
- 
+
 export default BarbershopDetailsPage;
