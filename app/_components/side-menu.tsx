@@ -2,12 +2,13 @@
 
 import { Button } from "./ui/button";
 import { CalendarIcon, HomeIcon, LogInIcon, LogOutIcon, MenuIcon, UserIcon } from "lucide-react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import Link from "next/link";
 import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription } from "./ui/dialog";
 import Image from "next/image";
+import { quickSearchOptions } from "../(home)/_constants/optionsSearch";
 const SideMenu = () => {
     const { data } = useSession();
 
@@ -78,6 +79,28 @@ const SideMenu = () => {
                                 Meus Agendamentos
                             </Link>
                         </Button>
+
+                        <div className="flex flex-col gap-2 border-b border-solid py-5">
+                            {quickSearchOptions.map((option) => {
+                                return (
+                                    <SheetClose key={option.title} asChild>
+                                        <Button
+                                            className=" justify-start gap-2"
+                                            variant="ghost"
+                                            key={option.title}
+                                            asChild
+                                        >
+                                            <Link href={`/barbershopsearch?service=${option.title}`}>
+                                                <Image src={option.imageUrl} width={18} height={18} alt={option.title} />
+                                                {option.title}
+                                            </Link>
+                                        </Button>
+                                    </SheetClose>
+                                );
+                            })}
+                        </div>
+
+
                         <Button variant="outline" className="justify-start" onClick={handleLogoutClick}>
                             <LogOutIcon />
                             Sair da conta

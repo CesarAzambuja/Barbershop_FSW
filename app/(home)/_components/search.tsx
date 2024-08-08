@@ -12,7 +12,7 @@ import { z } from "zod"
 
 const formSchema = z.object({
 
-    search: z.string().trim().min(1, { message: "campo obrigatório para busca!", }),
+    title: z.string().trim().min(1, { message: "campo obrigatório para busca!", }),
 })
 
 
@@ -20,14 +20,14 @@ const Search = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            search: "",
+            title: "",
         },
     })
 
     const router = useRouter();
 
     const handleSubmit = (data: z.infer<typeof formSchema>) => {
-        router.push(`/barbershopsearch?search=${data.search}`)
+        router.push(`/barbershopsearch?title=${data.title}`)
     }
 
     return (
@@ -36,7 +36,7 @@ const Search = () => {
             <form onSubmit={form.handleSubmit(handleSubmit)} className="flex items-center gap-2 w-full">
                 <FormField
                     control={form.control}
-                    name="search"
+                    name="title"
                     render={({ field }) => (
                         <FormItem className="w-full">
 

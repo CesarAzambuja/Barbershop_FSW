@@ -12,6 +12,8 @@ import Search from "./_components/search";
 import BookingItem from "../_components/booking-item";
 import BarbershopItem from "./_components/barbershop-item";
 import { quickSearchOptions } from "./_constants/optionsSearch";
+import Link from "next/link";
+
 
 
 
@@ -45,12 +47,16 @@ export default async function Home() {
         <Search />
       </div>
 
+      <div className="px-5 mt-6"><img src="/banner.png" alt="Banner" /></div>
+
       <div className="flex gap-3 px-5 pt-5 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
         {quickSearchOptions.map((option) => {
           return (
-            <Button className="gap-2" variant="secondary" key={option.title}>
-              <Image src={option.imageUrl} width={16} height={16} alt={option.title} />
-              {option.title}
+            <Button className="gap-2" variant="secondary" key={option.title} asChild>
+              <Link href={`/barbershopsearch?service=${option.title}`}>
+                <Image src={option.imageUrl} width={16} height={16} alt={option.title} />
+                {option.title}
+              </Link>
             </Button>
           );
         })}
