@@ -27,11 +27,13 @@ const SideMenu = () => {
                             <AvatarImage src={data.user?.image ?? ""} />
                         </Avatar>
 
-                        <h2 className="font-bold">{data.user.name}</h2>
+                        <div>
+                            <p className="font-bold text-sm">{data.user.name}</p>
+                            <p className="font-bold text-xs">{data.user.email}</p>
+                        </div>
+
                     </div>
-                    <Button variant="secondary" size="icon">
-                        <LogOutIcon onClick={handleLogoutClick} />
-                    </Button>
+
                 </div>
             ) : (
                 <div className="flex flex-col px-5 py-6 gap-3">
@@ -69,11 +71,16 @@ const SideMenu = () => {
                             <HomeIcon size={18} className="mr-2" />
                             Início
                         </Link>
-                    </Button><Button variant="outline" className="justify-start" asChild>
+                    </Button>
+                        <Button variant="outline" className="justify-start" asChild>
                             <Link href="/bookings">
                                 <CalendarIcon size={18} className="mr-2" />
                                 Meus Agendamentos
                             </Link>
+                        </Button>
+                        <Button variant="outline" className="justify-start" onClick={handleLogoutClick}>
+                            <LogOutIcon />
+                            Sair da conta
                         </Button></>
                 )}
             </div>

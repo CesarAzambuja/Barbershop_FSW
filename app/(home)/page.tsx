@@ -41,7 +41,7 @@ export default async function Home() {
 
       </div>
 
-      <div className="px-5 pt-5">
+      <div className="px-5 mt-6">
         <Search />
       </div>
 

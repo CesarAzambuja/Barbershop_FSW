@@ -40,7 +40,11 @@
   * {
     @apply border-border;
   }
+html {
+  @apply h-full;
+}
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased h-full;
   }
+
 }

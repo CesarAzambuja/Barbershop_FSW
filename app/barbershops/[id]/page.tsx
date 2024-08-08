@@ -15,11 +15,12 @@ import BarberShopPhone from "./_components/barbershop-phone";
 interface BarbershopDetailsPageProps {
     params: {
         id?: string;
-
     };
+
+
 };
 
-const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => {
+const BarbershopDetailsPage = async ({ params, }: BarbershopDetailsPageProps) => {
 
     const session = await getServerSession(authOptions)
 
@@ -37,6 +38,7 @@ const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => 
         }
     })
 
+
     if (!barbershop) {
         // TODO: Redirecionar para a homepage   
         return null
@@ -53,13 +55,10 @@ const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => 
                 ))}
             </div>
 
-            <div className="p-5 spacy-y-3">
-                {barbershop.phones.map(phone => (
-                    <BarberShopPhone key={phone} phone={phone} />
-                ))}
-            </div>
         </div>
     );
+
+
 };
 
 export default BarbershopDetailsPage;
